@@ -1,7 +1,0 @@
-{'source/*', 
-  [debug_info,
-  {outdir, "ebin/"},
-  {i, "include/."},
-  verbose
-  ]
-}.
