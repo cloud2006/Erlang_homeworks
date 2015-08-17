@@ -1,16 +1,14 @@
 -module(app_2_child).
--export([start_loop/0]).
 
-start_loop()->
-    io:format("Starting child loop with pid ~p ~n", [self()]),
-    loop().
+-export([start_link/0, hi/0, listen/0]).
 
-loop()->
+start_link() ->
+    {ok, spawn_link(?MODULE, listen, [])}.
+
+hi() ->
+    io:format("worker started...~n").
+
+listen() ->
     receive
-        Message ->
-            io:format("message received: ~p ~n", [Message]),
-            loop()
-    after 3000 ->
-        exit(timeout),
-        ok
+        _-> ok
     end.
